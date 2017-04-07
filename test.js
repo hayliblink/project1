@@ -13,7 +13,9 @@
 
         //timer sert a définir le temps d'appel de la fonction
         var timer;
-
+        //Pour ne pas avoir de temps d'attente d'une seconde
+        showRemaining();
+        
         //Calcul la difference entre temps actuelle et temps avenir
         function showRemaining() {
             var now = new Date();
@@ -44,11 +46,13 @@
         timer = setInterval(showRemaining, 1000);
     }
 
+
+  
 document.addEventListener('DOMContentLoaded', function() 
 {
   window.onscroll = function(ev) 
   {
-    document.getElementById("cRetour").className = (window.pageYOffset > 100) ? "cVisible" : "cInvisible";
+    document.getElementById("cRetour").className = (window.pageXOffset > 100) ? "cVisible" : "cInvisible";
   };
 }
 );
@@ -59,38 +63,39 @@ document.addEventListener('DOMContentLoaded', function()
 {
   var aLiens = document.querySelectorAll('a[href*="#"]');
  
-   
-    aLiens[0].onclick = function () 
-
+   for(i = 0; i < aLiens.length; i++)
+   {
+    aLiens[i].onclick = function () 
     {
         var target = this.getAttribute("href").slice(1);
         if (target.length) 
         {
-          scrollTo(document.getElementById(target).offsetTop, 1000);
+          scrollTo(document.getElementById(target).offsetLeft, 1000);
           return false;
         }
     };
+   }
 }
 );
 
 function scrollTo(element, duration)
  {
 	var e = document.documentElement;
-	if(e.scrollTop === 0)
+	if(e.scrollLeft === 0)
   {
 
-		var t = e.scrollTop;
+		var t = e.scrollLeft;
 
-		++e.scrollTop;
+		++e.scrollLeft;
 
 		e = document.body;
 	}
-	scrollToC(e, e.scrollTop, element, duration);
+	scrollToC(e, e.scrollLeft, element, duration);
 }
 
 function scrollToC(element, from, to, duration) 
 {
-	scrollToX(element, from, to, 0, 1/duration, 100, easeOutCuaic);
+	scrollToX(element, from, to, 0, 1/duration, 10, easeOutCuaic);
 }
 
 function scrollToX(element, x1, x2, t, v, step, operacion)
@@ -101,7 +106,7 @@ function scrollToX(element, x1, x2, t, v, step, operacion)
     return;
   } 
 
-	element.scrollTop = x1 - (x1-x2)*operacion(t);
+	element.scrollLeft = x1 - (x1-x2)*operacion(t);
 	t += v * step;
 	
 	setTimeout(function() 
@@ -114,4 +119,10 @@ function easeOutCuaic(t)
 {
 	t--;
 	return t*t*t+1;
+}
+
+
+
+function scrollWin(x, y) {
+    window.scrollBy(x, y);
 }
