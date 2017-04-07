@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8">
+      <link href="bootstrap.min.css" rel="stylesheet">
+    <style>
+       #map {
+        height: 400px;
+        width: 100%;
+        margin:0;
+       }
+       .textlieu{
+        color: rgb(149, 27, 128);
+        font-family: 'roboto';
+        font-size: 130%;
+        text-align: center;
+        margin-bottom: 10%;
+        margin-top: 5%;
+
+       }
+   
+    </style>
+  </head>
+  <body>
+    <div class="container marginmaps"> 
+      <div class="row">
+        <div class="col-xs-12 textlieu">
+          <h1><b>Adresse</b></h1>
+          </br>
+          <p>39 Allée Jules Guesde</br>31400 Toulouse</p>
+            </br>
+          <p>05-67-73-84-84</p>
+            </br>
+          <p>quaidessavoir.fr</p>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-xs-12">
+            <div id="map"></div>
+        </div>
+      </div>
+    </div>
+  
+    <script>
+      function initMap() {
+        var uluru = {lat: 43.604652, lng: 1.4442090000000007};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDiFcY2dGmrp7xRNl1kLKBBtxcr6rmq6aM&callback=initMap">
+    </script>
+  </body>
+</html>
